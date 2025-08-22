@@ -1,0 +1,188 @@
+{
+  "name": "code-navigator-pro",
+  "displayName": "Code Navigator Pro",
+  "description": "Une extension VS Code intelligente pour la navigation contextuelle, l'analyse de code et la collaboration d'équipe",
+  "version": "0.2.0",
+  "publisher": "code-navigator-pro",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/code-navigator-pro/extension.git"
+  },
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Other",
+    "Machine Learning"
+  ],
+  "keywords": [
+    "navigation",
+    "code-analysis",
+    "intelligence",
+    "collaboration",
+    "productivity",
+    "ai",
+    "context-aware"
+  ],
+  "activationEvents": [
+    "onStartupFinished",
+    "onLanguage:typescript",
+    "onLanguage:javascript",
+    "onLanguage:python",
+    "onLanguage:rust",
+    "onLanguage:go"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "code-navigator-pro.smartGoToDefinition",
+        "title": "Smart Go to Definition",
+        "category": "Code Navigator Pro"
+      },
+      {
+        "command": "code-navigator-pro.contextAwareReferences",
+        "title": "Context-Aware References",
+        "category": "Code Navigator Pro"
+      },
+      {
+        "command": "code-navigator-pro.codeMetrics",
+        "title": "Show Code Metrics",
+        "category": "Code Navigator Pro"
+      },
+      {
+        "command": "code-navigator-pro.dependencyVisualization",
+        "title": "Show Dependency Graph",
+        "category": "Code Navigator Pro"
+      },
+      {
+        "command": "code-navigator-pro.addAnnotation",
+        "title": "Add Code Annotation",
+        "category": "Code Navigator Pro"
+      },
+      {
+        "command": "code-navigator-pro.refactoringSuggestions",
+        "title": "Show Refactoring Suggestions",
+        "category": "Code Navigator Pro"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "code-navigator-pro.smartGoToDefinition",
+        "key": "f12",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "code-navigator-pro.contextAwareReferences",
+        "key": "shift+f12",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "code-navigator-pro.codeMetrics",
+        "key": "ctrl+shift+m",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "code-navigator-pro.dependencyVisualization",
+        "key": "ctrl+shift+d",
+        "when": "editorTextFocus"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "code-navigator-pro.smartGoToDefinition",
+          "group": "navigation",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": "code-navigator-pro.contextAwareReferences",
+          "group": "navigation",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": "code-navigator-pro.codeMetrics",
+          "group": "navigation",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": "code-navigator-pro.addAnnotation",
+          "group": "navigation",
+          "when": "editorTextFocus"
+        }
+      ]
+    },
+    "views": {
+      "code-navigator-sidebar": [
+        {
+          "id": "codeNavigatorMetrics",
+          "name": "Code Metrics",
+          "when": "workspaceHasCodeFiles"
+        },
+        {
+          "id": "codeNavigatorDependencies",
+          "name": "Dependencies",
+          "when": "workspaceHasCodeFiles"
+        },
+        {
+          "id": "codeNavigatorAnnotations",
+          "name": "Annotations",
+          "when": "workspaceHasCodeFiles"
+        }
+      ]
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "code-navigator-sidebar",
+          "title": "Code Navigator Pro",
+          "icon": "resources/icon.svg"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "lint:fix": "eslint src --ext ts --fix",
+    "format": "prettier --write \"src/**/*.{ts,js,json}\"",
+    "test": "node ./out/test/runTest.js",
+    "test:unit": "mocha 'out/test/unit/**/*.test.js'",
+    "test:integration": "mocha 'out/test/integration/**/*.test.js'",
+    "test:watch": "npm run test:unit -- --watch",
+    "test:coverage": "nyc npm run test:unit",
+    "test:all": "npm run test:unit && npm run test:integration",
+    "dev": "npm run watch",
+    "build": "npm run compile",
+    "clean": "rimraf out",
+    "package": "@vscode/vsce package"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^20.19.11",
+    "@types/vscode": "^1.74.0",
+    "@typescript-eslint/eslint-plugin": "^8.40.0",
+    "@typescript-eslint/parser": "^8.40.0",
+    "@vscode/test-electron": "^2.5.2",
+    "@vscode/vsce": "^2.32.0",
+    "eslint": "^9.33.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "glob": "^11.0.3",
+    "mocha": "^11.7.1",
+    "nyc": "^17.1.0",
+    "prettier": "^3.0.0",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.1.6",
+    "vscode-test": "^1.6.1"
+  },
+  "dependencies": {
+    "fs-extra": "^11.1.1"
+  }
+}
